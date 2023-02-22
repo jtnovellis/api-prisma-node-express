@@ -15,6 +15,10 @@ async function allUsersHandler(req: Request, res: Response) {
     const users = await prisma.user.findMany({
       take: Number(limit),
       skip,
+      include: {
+        posts: true,
+        profile: true,
+      },
       orderBy: {
         id: 'asc',
       },
